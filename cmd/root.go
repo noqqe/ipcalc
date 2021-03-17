@@ -33,7 +33,7 @@ var (
 )
 
 var rootCmd = &cobra.Command{
-	Version: "0.1.0",
+	Version: "0.2.0",
 	Use:     "ipcalc [flags] <prefix> [prefix...]",
 	Long: `ipcalc - IPv6-enabled CIDR calculator
 
@@ -55,25 +55,21 @@ Default action is to show the prefixes details`,
 				sb.WriteByte('\n')
 			}
 
-			fmt.Fprintf(sb, "> %s%s\n\n%s", Purple, p, Reset)
-			fmt.Fprintf(sb, "  Number of addresses: %s%d%s\n", Pink, p.NumNodes(), Reset)
-			sb.WriteByte('\n')
-			fmt.Fprintf(sb, "  Netmask:  %s%s%s\n", Yellow, Explode(p.Mask), Reset)
-			fmt.Fprintf(sb, "  Wildcard: %s%s%s\n", Yellow, Explode(p.Hostmask()), Reset)
-			sb.WriteByte('\n')
-			fmt.Fprintf(sb, "  First:    %s%s%s\n", Green, Explode(p.IP), Reset)
+			fmt.Fprintf(sb, "> %s%s\n%s", Purple, p, Reset)
+			fmt.Fprintf(sb, "  Netmask:   %s%s%s\n", Yellow, Explode(p.Mask), Reset)
+			fmt.Fprintf(sb, "  Wildcard:  %s%s%s\n", Yellow, Explode(p.Hostmask()), Reset)
+			fmt.Fprintf(sb, "  First:     %s%s%s\n", Green, Explode(p.IP), Reset)
 			if !bytes.Equal(ip, p.IP) {
-				fmt.Fprintf(sb, "  Input:    %s\n", Explode(ip))
+				fmt.Fprintf(sb, "  Input:     %s\n", Explode(ip))
 			}
-			fmt.Fprintf(sb, "  Last:     %s%s%s\n", Green, Explode(p.Last()), Reset)
+			fmt.Fprintf(sb, "  Last:      %s%s%s\n", Green, Explode(p.Last()), Reset)
 
 			if verbose {
-				sb.WriteByte('\n')
-				fmt.Fprintf(sb, "  First:    %s\n", Bin(p.IP, p.Len()))
+				fmt.Fprintf(sb, "  First:     %s\n", Bin(p.IP, p.Len()))
 				if !bytes.Equal(ip, p.IP) {
-					fmt.Fprintf(sb, "  Input:    %s\n", Bin(ip, p.Len()))
+					fmt.Fprintf(sb, "  Input:     %s\n", Bin(ip, p.Len()))
 				}
-				fmt.Fprintf(sb, "  Last:     %s\n", Bin(p.Last(), p.Len()))
+				fmt.Fprintf(sb, "  Last:      %s\n", Bin(p.Last(), p.Len()))
 			}
 		}
 

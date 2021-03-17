@@ -34,20 +34,24 @@ var subnetCmd = &cobra.Command{
 		}
 
 		if verbose {
-			for _, sp := range p.Subnets(int(log)) {
+			for i, sp := range p.Subnets(int(log)) {
+
+				if i != 0 {
+					fmt.Println()
+				}
+
 				fmt.Printf("> %s%s%s\n", Purple, sp.String(), Reset)
 				_, p := ParseCIDR(sp.String())
 				fmt.Printf("  Addresses:  %s%d%s\n", Pink, p.NumNodes(), Reset)
 				fmt.Printf("  Netmask:    %s%s%s\n", Yellow, Explode(p.Mask), Reset)
 				fmt.Printf("  First:      %s%s%s\n", Green, Explode(p.IP), Reset)
 				fmt.Printf("  Last:       %s%s%s\n", Green, Explode(p.Last()), Reset)
-				fmt.Printf("\n")
 			}
 		} else {
 			for _, sp := range p.Subnets(int(log)) {
 				sub = append(sub, sp.String())
 			}
-		  fmt.Printf("> %s%s%s\n", Purple, strings.Join(sub, ", "), Reset)
+			fmt.Printf("> %s%s%s\n", Purple, strings.Join(sub, ", "), Reset)
 		}
 		return nil
 	},
