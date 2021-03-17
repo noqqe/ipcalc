@@ -90,12 +90,12 @@ brews:
     # So you can `brew test` your formula.
     # Default is empty.
     test: |
-      system "#{bin}/program --version"
+      system "#{bin}/ipcalc --version"
       ...
 
     # Custom install script for brew.
     # Default is 'bin.install "program"'.
     install: |
-      bin.install "program"
+      bin.install "ipcalc"
       ...
 
