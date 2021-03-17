@@ -1,4 +1,4 @@
-module github.com/asenci/ipcalc
+module github.com/noqqe/ipcalc
 
 go 1.16
 

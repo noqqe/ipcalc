@@ -1,6 +1,6 @@
 package main
 
-import "github.com/asenci/ipcalc/cmd"
+import "github.com/noqqe/ipcalc/cmd"
 
 func main() {
 	cmd.Execute()
