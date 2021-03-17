@@ -33,11 +33,22 @@ var subnetCmd = &cobra.Command{
 			return fmt.Errorf("\"n\" must be a power of 2")
 		}
 
-		for _, sp := range p.Subnets(int(log)) {
-			sub = append(sub, sp.String())
+		if verbose {
+			for _, sp := range p.Subnets(int(log)) {
+				fmt.Printf("> %s%s%s\n", Purple, sp.String(), Reset)
+				_, p := ParseCIDR(sp.String())
+				fmt.Printf("  Addresses:  %s%d%s\n", Pink, p.NumNodes(), Reset)
+				fmt.Printf("  Netmask:    %s%s%s\n", Yellow, Explode(p.Mask), Reset)
+				fmt.Printf("  First:      %s%s%s\n", Green, Explode(p.IP), Reset)
+				fmt.Printf("  Last:       %s%s%s\n", Green, Explode(p.Last()), Reset)
+				fmt.Printf("\n")
+			}
+		} else {
+			for _, sp := range p.Subnets(int(log)) {
+				sub = append(sub, sp.String())
+			}
+		  fmt.Printf("> %s%s%s\n", Purple, strings.Join(sub, ", "), Reset)
 		}
-
-		fmt.Printf("> %s%s%s\n", Purple, strings.Join(sub, ", "), Reset)
 		return nil
 	},
 }
