@@ -6,6 +6,19 @@ Source available at: https://github.com/noqqe/ipcalc/
 
 Please report any issues at: https://github.com/noqqe/ipcalc/issues/
 
+## Install
+
+```
+brew install noqqe/tap/ipcalc
+```
+
+or
+
+```
+brew tap noqqe/tap
+brew install ipcalc
+```
+
 ## License
 
 Licensed under MIT license.
