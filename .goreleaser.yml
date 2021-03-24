@@ -79,10 +79,6 @@ brews:
     # Default is empty.
     license: "MIT"
 
-    # Packages your package depends on.
-    dependencies:
-      - name: go
-
     # Packages that conflict with your package.
     conflicts:
       - ipcalc

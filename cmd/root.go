@@ -33,7 +33,7 @@ var (
 )
 
 var rootCmd = &cobra.Command{
-	Version: "0.3.0",
+	Version: "0.3.1",
 	Use:     "ipcalc [flags] <prefix> [prefix...]",
 	Long: `ipcalc - IPv6-enabled CIDR calculator
 
