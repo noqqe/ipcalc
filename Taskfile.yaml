@@ -1,0 +1,27 @@
+# https://taskfile.dev
+
+version: '3'
+
+tasks:
+
+  build:
+    cmds:
+      - go build -ldflags "-X github.com/noqqe/ipcalc/cmd.Version=`git describe --tags`"  -o ipcalc -v main.go
+    sources:
+      - "main.go"
+      - "cmd/*.go"
+    generates:
+      - "./ipcalc"
+
+  release:
+    interactive: true
+    cmds:
+      - git tag | tail -5
+      - read -p "Version 1.1.1 " version ; git tag $version
+      - git push --tags
+      - goreleaser release --clean
+
+  default:
+    cmds:
+      - task: build
+

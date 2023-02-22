@@ -1,2 +1,3 @@
 bin/ipcalc
 dist/
+.task/*

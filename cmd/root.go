@@ -25,6 +25,7 @@ var (
 	Purple      = "\033[38;5;183m"
 	Red         = "\033[38;5;210m"
 	Yellow      = "\033[38;5;229m"
+	Version     = "unknown"
 )
 
 var (
@@ -33,7 +34,7 @@ var (
 )
 
 var rootCmd = &cobra.Command{
-	Version: "0.3.1",
+	Version: Version,
 	Use:     "ipcalc [flags] <prefix> [prefix...]",
 	Long: `ipcalc - IPv6-enabled CIDR calculator
 
@@ -56,7 +57,7 @@ Default action is to show the prefixes details`,
 			}
 
 			fmt.Fprintf(sb, "> %s%s\n%s", Purple, p, Reset)
-      fmt.Fprintf(sb, "  Addresses: %s%d%s\n", Pink, p.NumNodes(), Reset)
+			fmt.Fprintf(sb, "  Addresses: %s%d%s\n", Pink, p.NumNodes(), Reset)
 			fmt.Fprintf(sb, "  Netmask:   %s%s%s\n", Yellow, Explode(p.Mask), Reset)
 			fmt.Fprintf(sb, "  Wildcard:  %s%s%s\n", Yellow, Explode(p.Hostmask()), Reset)
 			fmt.Fprintf(sb, "  First:     %s%s%s\n", Green, Explode(p.IP), Reset)
