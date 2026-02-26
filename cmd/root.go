@@ -1,7 +1,7 @@
+// Package cmd implements commands for usage of ipcalc
 package cmd
 
 import (
-	"bytes"
 	"fmt"
 	"net"
 	"os"
@@ -61,14 +61,14 @@ Default action is to show the prefixes details`,
 			fmt.Fprintf(sb, "  Netmask:   %s%s%s\n", Yellow, Explode(p.Mask), Reset)
 			fmt.Fprintf(sb, "  Wildcard:  %s%s%s\n", Yellow, Explode(p.Hostmask()), Reset)
 			fmt.Fprintf(sb, "  First:     %s%s%s\n", Green, Explode(p.IP), Reset)
-			if !bytes.Equal(ip, p.IP) {
+			if !net.IP.Equal(ip, p.IP) {
 				fmt.Fprintf(sb, "  Input:     %s\n", Explode(ip))
 			}
 			fmt.Fprintf(sb, "  Last:      %s%s%s\n", Green, Explode(p.Last()), Reset)
 
 			if verbose {
 				fmt.Fprintf(sb, "  First:     %s\n", Bin(p.IP, p.Len()))
-				if !bytes.Equal(ip, p.IP) {
+				if !net.IP.Equal(ip, p.IP) {
 					fmt.Fprintf(sb, "  Input:     %s\n", Bin(ip, p.Len()))
 				}
 				fmt.Fprintf(sb, "  Last:      %s\n", Bin(p.Last(), p.Len()))
