@@ -15,7 +15,7 @@ builds:
       - -X github.com/noqqe/ipcalc/pkg/ipcalc.Version={{.Tag}}
     flags:
       - -v
-    main: ./cmd/ipcalc
+    main: ./cmd/ipcalc.go
 archives:
   - id: ipcalc
     name_template: >-
@@ -30,6 +30,22 @@ changelog:
     exclude:
       - '^docs:'
       - '^test:'
+nix:
+  - name: ipcalc
+    path: ipcalc.nix
+    homepage: "https://github.com/noqqe/ipcalc"
+    description: "ipcalc - subnetting/aggregating"
+    license: "mit"
+    formatter: nixfmt
+    commit_author:
+      name: goreleaserbot
+      email: goreleaser@goreleaser.com
+    repository:
+      owner: noqqe
+      name: nix-user-pkgs
+      branch: main
+      token: "{{ .Env.GITHUB_TOKEN }}"
+
 brews:
   - name: ipcalc
     goarm: 6
@@ -40,10 +56,10 @@ brews:
     directory: Formula
     commit_author:
       name: goreleaserbot
-      email: goreleaser@carlosbecker.com
+      email: goreleaser@goreleaser.com
     homepage: "https://github.com/noqqe/ipcalc"
     description: "ipcalc - subnetting/aggregating"
-    license: "MIT"
+    license: "mit"
     test: |
       system "#{bin}/ipcalc --version"
     install: |

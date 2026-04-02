@@ -1,4 +1,4 @@
-bin/ipcalc
 dist/
 .task/*
 ipcalc
+!ipcalc/
