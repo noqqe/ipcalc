@@ -6,9 +6,9 @@ tasks:
 
   build:
     cmds:
-      - go build -ldflags "-X github.com/noqqe/ipcalc/cmd.Version=`git describe --tags`"  -o ipcalc -v main.go
+      - go build -ldflags "-X github.com/noqqe/ipcalc/pkg/ipcalc.Version=`git describe --tags`"  -o ipcalc -v cmd/ipcalc.go
     sources:
-      - "main.go"
+      - "pkg/ipcalc/*.go"
       - "cmd/*.go"
     generates:
       - "./ipcalc"
